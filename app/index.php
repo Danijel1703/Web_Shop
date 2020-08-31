@@ -6,6 +6,7 @@
     use Controllers\SignupController;
     use Models\App;
     use Controllers\LoginController;
+    session_start();
 
 
 
@@ -43,7 +44,6 @@
 
         $app->map('/',[new HomeController,'index']);
         */
-        $app->route();
         $app->run();
 
         ?>

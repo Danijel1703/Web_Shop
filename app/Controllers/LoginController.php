@@ -1,7 +1,6 @@
 <?php
 
 namespace Controllers;
-namespace Controllers;
 use Models\UserStorage;
 use Models\User;
 use PDO;
@@ -15,6 +14,8 @@ use Models\View;
             public function __construct(PDO $db)
             {
                 $this->db=$db;
+                $this->index();
+
             }
 
             public function Login () {
@@ -29,8 +30,22 @@ use Models\View;
                     $user->setPassword($_POST['password']);
                     $check=new UserStorage($this->db);
                     $check->authentication($user);
-                    $check->getAuth();
+                    $check->getUserBool();
+                    $check->getAdminBool();
+                    $check->bool;
+                    echo '<br>';
+                    echo $check->adminbool;
+                    if($check->adminbool==true)
+                    {
+                        header('location: AdminHome');
+                    }
+                    else if ($check->adminbool==false && $check->bool==true)
+                    {
+                        header('location: Home');
+                    }
                     var_dump($check);
+
+
                 }
 
 

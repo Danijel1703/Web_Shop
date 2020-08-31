@@ -14,7 +14,7 @@ class SignupController extends View {
         public function __construct(PDO $db)
         {
             $this->db=$db;
-
+            $this->StoreAndCheck();
 
         }
 
@@ -33,15 +33,6 @@ class SignupController extends View {
                 $storage->StoreUsers($user);
 
             }
-
-
-
-
-        }
-
-        public function index()
-        {
-            $signup=$this->StoreAndCheck();
         }
 
 

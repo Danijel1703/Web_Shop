@@ -8,10 +8,12 @@
 <body>
 
     <form action="login" method="post">
-        <input type="text" name="username">
+        <h3>Username</h3>
+        <input type="text" name="username" required="required">
         <br>
         <br>
-        <input type="password" name="password">
+        <h3>Password</h3>
+        <input type="password" name="password" required="required">
         <br>
         <br>
         <input type="submit" value="Log In" name="submit">

@@ -2,7 +2,9 @@
 
             namespace Controllers;
             use Models\App;
-            class HomeController
+            use Models\UserStorage;
+            use Models\User;
+            class AdminHomeController
             {
 
                    public function __construct()
@@ -12,8 +14,7 @@
                    }
                    public function index()
                    {
-                            echo 'Običan';
-
+                       echo 'Admin';
                        if(isset($_SESSION['username']))
                        {
 
