@@ -1,19 +1,14 @@
 <?php
 namespace Views;
-
 ?>
-
-
 <html>
 <style>
-    td {
-        border: 2px solid black;
-    }
+
 </style>
 
 <body>
 
-<form action="AdminStore" method="post">
+<form action="editProduct" method="post">
     <h3>Product name:</h3>
     <input type="text" name="product_name">
     <br>
@@ -36,3 +31,4 @@ namespace Views;
 </form>
 </body>
 </html>
+

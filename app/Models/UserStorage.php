@@ -98,8 +98,22 @@
                 $statement->setFetchMode(PDO::FETCH_CLASS, User::class);
                 $statement->execute();
                 $items = $statement->fetchAll();
+                $correctpass=false;
+                $userexists=false;
                 foreach ($items as $item) {
-                    if (($item->username == $user->getUsername()) && password_verify($user->getPassword(),$item->password)) {
+
+                    if($item->username == $user->getUsername())
+                    {
+                        $userexists=true;
+                    }
+                    if(password_verify($user->getPassword(),$item->password)==true)
+                    {
+                        $correctpass=true;
+                    }
+                    if (($item->username == $user->getUsername()) && password_verify($user->getPassword(),$item->password)==true) {
+
+                        $correctpass=true;
+                        $userexists=true;
 
                         if ($item->role==='admin')
                         {
@@ -117,21 +131,20 @@
 
                         }
                     }
-                    else if(($item->username==$user->getUsername()) && ($item->password!=$user->getPassword()))
-                    {
-
-                        echo 'Wrong password';
-                        break;
-
-                    }
-                    else if(($item->username!=$user->getUsername()) && ($item->password!=$user->getPassword()))
-                    {
-                        echo 'User does not exist!';
-
-                    }
+                    var_dump(password_verify($user->getPassword(),$item->password));
                 }
-            }
+                if ($userexists==false)
+                {
+                    echo 'User does not exist.';
+                }
+                if($userexists==true && $correctpass==false)
+                {
+                    echo 'Wrong password.';
+                }
 
+
+
+            }
 
             public function getUserBool()
             {

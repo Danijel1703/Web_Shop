@@ -10,26 +10,41 @@
         class AdminStoreController extends View {
 
                 protected $db;
+                protected $items=[];
+
+
                 public function __construct(PDO $db)
                 {
                     $this->db=$db;
-                    $this->InputProducts();
                 }
 
-                public function InputProducts()
+                public function inputProducts()
                 {
-                    echo parent::render('AdminStore');
+                    $this->items=$this->getItems();
+                    echo parent::render('AdminStore',['items'=>$this->items]);
                     if(isset($_POST['submit']))
                     {
                         $product=new Product();
                         $product->setProductname($_POST['product_name']);
                         $product->setProductprice($_POST['product_price']);
                         $product->setProductquantity($_POST['product_quantity']);
-                        var_dump($product);
+                        $product->setProductdescription($_POST['product_description']);
+
+
                         $storage=new ProductStorage($this->db);
                         $storage->StoreItems($product);
 
+
                     }
+                }
+                public function getItems()
+                {
+                    $statement=$this->db->prepare("
+                    SELECT * FROM products
+                    ");
+                    $statement->setFetchMode(PDO::FETCH_CLASS,Product::class);
+                    $statement->execute();
+                    return $statement->fetchAll();
                 }
 
 

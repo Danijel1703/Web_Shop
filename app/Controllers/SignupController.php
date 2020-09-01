@@ -10,15 +10,12 @@ use Models\View;
 class SignupController extends View {
 
         protected $db;
-        protected $signup;
         public function __construct(PDO $db)
         {
             $this->db=$db;
-            $this->StoreAndCheck();
-
         }
 
-        public function StoreAndCheck()
+        public function signup()
         {
             echo parent::render('SignUp');
             if(isset($_POST['submit']))

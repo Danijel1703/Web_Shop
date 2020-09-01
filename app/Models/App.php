@@ -24,16 +24,28 @@ use Controllers\HomeController;
 
     public function route()
       {
-                $url=$_SERVER['REQUEST_URI'];
+                $url=trim($_SERVER['REQUEST_URI'],"/");
+                //$parseurl=parse_url($_SERVER['REQUEST_URI']);
+
                 $parts=explode('/',$url);
-                $controller=$parts[1];
+                $controller=$parts[0];
                 $controllerfile='Controllers/'.ucfirst($controller).'Controller.php';
                 var_dump($controllerfile);
                 $controllerclass='Controllers\\'.ucfirst($controller).'Controller';
                 if(file_exists($controllerfile))
                 {
+                    $controllerclass=new $controllerclass($this->container->db);
+                    if(isset($parts[1]))
+                    {
+                        $method=$parts[1];
+                        $controllerclass->$method();
 
-                    return new $controllerclass($this->container->db);
+                    }
+                    else {
+                        die('Ne postoji');
+                    }
+                    return $controllerclass;
+
 
                 }
                if($controller=='' || $controller=='Home')

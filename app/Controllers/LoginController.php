@@ -14,11 +14,10 @@ use Models\View;
             public function __construct(PDO $db)
             {
                 $this->db=$db;
-                $this->index();
 
             }
 
-            public function Login () {
+            public function logIn () {
                 echo parent::render('Login');
 
 
@@ -37,11 +36,11 @@ use Models\View;
                     echo $check->adminbool;
                     if($check->adminbool==true)
                     {
-                        header('location: AdminHome');
+                        header('location: /AdminHome/index');
                     }
                     else if ($check->adminbool==false && $check->bool==true)
                     {
-                        header('location: Home');
+                        header('location: /Home/index');
                     }
                     var_dump($check);
 
@@ -50,10 +49,6 @@ use Models\View;
 
 
 
-            }
-            public function index()
-            {
-                $this->Login();
             }
 
 
