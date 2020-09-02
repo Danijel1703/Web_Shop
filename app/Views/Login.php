@@ -7,7 +7,7 @@
 
 <body>
 
-    <form action="login" method="post">
+    <form action="login/logIn" method="post">
         <h3>Username</h3>
         <input type="text" name="username" required="required">
         <br>

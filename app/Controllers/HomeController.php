@@ -2,24 +2,16 @@
 
             namespace Controllers;
             use Models\App;
-            class HomeController
+            use Models\View;
+            class HomeController extends View
             {
 
                    public function __construct()
                    {
-
+                       echo parent::render('Home');
 
                    }
-                   public function index()
-                   {
-                            echo 'Običan';
 
-                       if(isset($_SESSION['username']))
-                       {
-
-                           echo "<br>".$_SESSION['username'];
-                       }
-                   }
 
 
             }

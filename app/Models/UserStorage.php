@@ -83,6 +83,7 @@
                         'email' => $user->getEmail(),
 
                     ]);
+                    header('location: /Login ');
 
 
 

@@ -7,7 +7,7 @@
         use Models\UserStorage;
         use Models\User;
         use PDO;
-        class AdminStoreController extends View {
+        class InputproductsController extends View {
 
                 protected $db;
                 protected $items=[];
@@ -16,12 +16,13 @@
                 public function __construct(PDO $db)
                 {
                     $this->db=$db;
+                    echo parent::render('InputProducts',['items'=>$this->items]);
+
                 }
 
                 public function inputProducts()
                 {
                     $this->items=$this->getItems();
-                    echo parent::render('AdminStore',['items'=>$this->items]);
                     if(isset($_POST['submit']))
                     {
                         $product=new Product();

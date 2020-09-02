@@ -20,6 +20,7 @@ class SelectEditProductController extends View
     public function __construct(PDO $db)
     {
         $this->db = $db;
+        $this->selectProduct();
     }
 
     public function selectProduct()

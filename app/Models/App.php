@@ -42,9 +42,8 @@ use Controllers\HomeController;
 
                     }
                     else {
-                        die('Ne postoji');
+                        return $controllerclass;
                     }
-                    return $controllerclass;
 
 
                 }

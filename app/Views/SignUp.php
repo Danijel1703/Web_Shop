@@ -5,7 +5,7 @@
 
 <body>
 
-        <form action="signup" method="post">
+        <form action="signup/signUp" method="post">
 
             <h3>Username:</h3><input type="text" name="username" required="required">
             <br>
@@ -21,6 +21,8 @@
             <br>
             <h3>Last Name:</h3><input type="text" name="lastname" required="required">
             <input type="submit" value="Sign Up" name="submit">
+
+
 
         </form>
 

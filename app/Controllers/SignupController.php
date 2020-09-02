@@ -13,11 +13,12 @@ class SignupController extends View {
         public function __construct(PDO $db)
         {
             $this->db=$db;
+            echo parent::render('SignUp');
+
         }
 
-        public function signup()
+        public function signUp()
         {
-            echo parent::render('SignUp');
             if(isset($_POST['submit']))
             {
                 $user=new User();

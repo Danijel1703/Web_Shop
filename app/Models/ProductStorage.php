@@ -2,7 +2,7 @@
 
 
 namespace Models;
-use Controllers\AdminStoreController;
+use Controllers\InputproductsController;
 use PDO;
 
 class ProductStorage
@@ -58,6 +58,43 @@ class ProductStorage
             }
 
 
+    }
+
+    public function updateItems($update,$id)
+    {
+        $statement=$this->db->prepare("
+            
+            UPDATE products 
+            SET product_name=:product_name, 
+                product_price=:product_price,
+                product_quantity=:product_quantity,
+                product_description=:product_description
+            WHERE id=:id 
+            ");
+
+        $statement->execute([
+
+            'product_name' => $update->getProductname(),
+            'product_price' => $update->getProductprice(),
+            'product_quantity' => $update->getProductquantity(),
+            'product_description' => $update->getProductdescription(),
+            'id' => $id,
+
+        ]);
+
+    }
+    public function get($id)
+    {
+        $statement=$this->db->prepare("
+                    SELECT * FROM products
+                    WHERE id= :id
+                    ");
+
+        $statement->setFetchMode(PDO::FETCH_OBJ);
+        $statement->execute([
+            'id' => $id
+        ]);
+        return $statement->fetchAll();
     }
 
 

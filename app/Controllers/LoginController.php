@@ -14,11 +14,11 @@ use Models\View;
             public function __construct(PDO $db)
             {
                 $this->db=$db;
+                echo parent::render('Login');
 
             }
 
             public function logIn () {
-                echo parent::render('Login');
 
 
                 if(isset($_POST['submit']))
@@ -36,11 +36,11 @@ use Models\View;
                     echo $check->adminbool;
                     if($check->adminbool==true)
                     {
-                        header('location: /AdminHome/index');
+                        header('location: /AdminHome');
                     }
                     else if ($check->adminbool==false && $check->bool==true)
                     {
-                        header('location: /Home/index');
+                        header('location: /');
                     }
                     var_dump($check);
 

@@ -13,7 +13,7 @@ namespace Views;
 
 <body>
 
-<form action="AdminStore" method="post">
+<form action="Inputproducts/inputProducts" method="post">
     <h3>Product name:</h3>
     <input type="text" name="product_name">
     <br>

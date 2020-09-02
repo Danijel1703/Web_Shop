@@ -1,5 +1,6 @@
 <?php
 namespace Views;
+
 ?>
 <html>
 
@@ -9,16 +10,35 @@ namespace Views;
         <?php
         foreach ($items as $item):
             ?>
-            <tr><td><?=   $item->getProductname(); ?></td><td><?=   $item->getProductprice(); ?></td>
-                <td><?=   $item->getProductdescription(); ?></td><td><?=   $item->getProductquantity(); ?>
-                <td><a href="EditProduct/editproduct?id=<?= $item->getId()?>">EDIT</a></td></tr>
+            <tr>
+                        <td>
+                            <?php  $item->getProductname(); ?>
+                        </td>
+                        <td>
+                            <?=   $item->getProductprice(); ?>
+                        </td>
+                        <td>
+                            <?=   $item->getProductdescription(); ?>
+                        </td>
+                        <td>
+                            <?=   $item->getProductquantity(); ?>
+                        </td>
+                        <td>
+                            <?=   $item->getId(); ?>
+                        </td>
+                        <td>
+                        <a>
+                            <a name="id"  href="EditProduct/editProduct?id=<?=  $item->getId(); ?>">EDIT</a>
+                        </td>
+
+
+
+            </tr>
         <?php
-        var_dump($item->getId());
         endforeach;
-
         ?>
-    </table>
 
+    </table>
 
 </body>
 </html>
