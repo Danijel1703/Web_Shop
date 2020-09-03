@@ -23,10 +23,11 @@ namespace Views;
     <br>
     <h3>Product description:</h3>
     <input type="text" name="product_description">
+    <input type="hidden" name="id" value="<?=  isset($_GET['id']) ? $_GET['id'] : ''; ?>">
     <br>
     <br>
-
     <input type="submit" value="Submit" name="submit">
+
 
 </form>
 </body>

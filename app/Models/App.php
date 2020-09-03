@@ -24,23 +24,40 @@ use Controllers\HomeController;
 
     public function route()
       {
-                $url=trim($_SERVER['REQUEST_URI'],"/");
-                //$parseurl=parse_url($_SERVER['REQUEST_URI']);
 
+                var_dump(parse_url($_SERVER['REQUEST_URI'],PHP_URL_QUERY));
+                $url=trim($_SERVER['REQUEST_URI'],"/");
                 $parts=explode('/',$url);
                 $controller=$parts[0];
                 $controllerfile='Controllers/'.ucfirst($controller).'Controller.php';
-                var_dump($controllerfile);
                 $controllerclass='Controllers\\'.ucfirst($controller).'Controller';
-                if(file_exists($controllerfile))
+                var_dump($controllerclass);
+          if(file_exists($controllerfile))
                 {
                     $controllerclass=new $controllerclass($this->container->db);
                     if(isset($parts[1]))
                     {
                         $method=$parts[1];
+                        $idparts=explode('?',$method);
+                        if(isset($idparts[1]))
+                        {
+                            $fullid='?'.$idparts[1];
+                            $fullidint=explode('=',$idparts[1]);
+
+                            if(isset($fullid))
+                            {
+                                $method=rtrim($method,$fullid);
+                            }
+
+                        }
                         $controllerclass->$method();
 
+
                     }
+
+
+
+
                     else {
                         return $controllerclass;
                     }
@@ -56,11 +73,10 @@ use Controllers\HomeController;
 
 
       }
-             public function run()
-            {
-
-            return $this->route();
-            }
+      public function run()
+      {
+        return $this->route();
+      }
 
 
   }

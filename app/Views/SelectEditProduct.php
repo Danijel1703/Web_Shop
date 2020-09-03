@@ -12,10 +12,11 @@ namespace Views;
             ?>
             <tr>
                         <td>
-                            <?php  $item->getProductname(); ?>
+                            <?=  $item->getProductname(); ?>
                         </td>
                         <td>
                             <?=   $item->getProductprice(); ?>
+
                         </td>
                         <td>
                             <?=   $item->getProductdescription(); ?>
@@ -30,15 +31,13 @@ namespace Views;
                         <a>
                             <a name="id"  href="EditProduct/editProduct?id=<?=  $item->getId(); ?>">EDIT</a>
                         </td>
-
-
-
             </tr>
         <?php
         endforeach;
         ?>
 
     </table>
-
+<h1>
+</h1>
 </body>
 </html>

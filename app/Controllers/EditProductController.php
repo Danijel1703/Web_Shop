@@ -15,35 +15,30 @@ class EditProductController extends View
 
     protected $db;
     protected $items = [];
-    protected $id;
 
     public function __construct(PDO $db)
     {
         $this->db = $db;
         echo parent::render('EditProduct', ['items' => $this->items]);
 
-    }
-
-
-    public function seteditProduct()
-    {
-
-        $this->id=$_GET['id'];
-        var_dump($this->id);
-        $this->editProduct();
 
     }
     public function editProduct()
     {
 
-        /*
-        $update=new Product();
-        $update->setProductname($_POST['product_name']);
-        $update->setProductprice($_POST['product_price']);
-        $update->setProductquantity($_POST['product_quantity']);
-        $update->setProductdescription($_POST['product_description']);
-        $storage=new ProductStorage($this->db);
-        $storage->updateItems($update,$this->id);*/
+        if(isset($_POST['submit']))
+        {
+
+           $update=new Product();
+           $update->setProductname($_POST['product_name']);
+           $update->setProductprice($_POST['product_price']);
+           $update->setProductquantity($_POST['product_quantity']);
+           $update->setProductdescription($_POST['product_description']);
+           $update->setId($_POST['id']);
+           $storage=new ProductStorage($this->db);
+           $storage->updateItems($update);
+           //header('location: /SelectEditProduct');
+       }
     }
 
     public function getItems()

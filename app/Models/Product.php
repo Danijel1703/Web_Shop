@@ -6,9 +6,8 @@
 
             public $product_name;
             public $product_price;
-            protected $product_quantity;
+            public $product_quantity;
             public $product_description;
-            public $quantity;
             public $id;
             public function setProductname($product_name)
             {
@@ -42,14 +41,7 @@
             {
                 return $this->product_description;
             }
-            public function setquantityupdate($quantity)
-            {
-                $this->quantity=$quantity;
-            }
-            public function getquantityupdate()
-            {
-                return $this->quantity;
-            }
+
             public function setId($id)
             {
                 $this->id=$id;
@@ -58,6 +50,7 @@
             {
                 return $this->id;
             }
+
 
 
         }

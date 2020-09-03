@@ -60,7 +60,7 @@ class ProductStorage
 
     }
 
-    public function updateItems($update,$id)
+    public function updateItems($update)
     {
         $statement=$this->db->prepare("
             
@@ -69,18 +69,15 @@ class ProductStorage
                 product_price=:product_price,
                 product_quantity=:product_quantity,
                 product_description=:product_description
-            WHERE id=:id 
+            WHERE id=:id
             ");
+        $statement->bindValue(':product_name',$update->getProductname());
+        $statement->bindValue(':product_price',$update->getProductprice());
+        $statement->bindValue(':product_quantity',$update->getProductquantity());
+        $statement->bindValue(':product_description',$update->getProductdescription());
+        $statement->bindValue(':id',$update->getId());
+        $statement->execute();
 
-        $statement->execute([
-
-            'product_name' => $update->getProductname(),
-            'product_price' => $update->getProductprice(),
-            'product_quantity' => $update->getProductquantity(),
-            'product_description' => $update->getProductdescription(),
-            'id' => $id,
-
-        ]);
 
     }
     public function get($id)
