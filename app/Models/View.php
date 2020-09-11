@@ -17,7 +17,6 @@ class View{
         include $file;
         $output = ob_get_clean();
         return $output;
-
     }
 
 }

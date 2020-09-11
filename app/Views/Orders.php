@@ -1,5 +1,5 @@
 <?php
-namespace Views;
+        namespace Views;
 $logout="";
 $user="";
 $ul="";
@@ -24,29 +24,21 @@ if(isset($_SESSION['role']))
     }
 
 }
-
-
 ?>
-
-
 <html>
-<style>
-    td {
-        border: 2px solid black;
-    }
-</style>
-<div class="wrapper">
-    <body>
+<body>
+<div class="main">
     <div class="header">
         <div class="welcome">WELCOME</div>
         <a href="/login" <?= $login ?>><button class="login"><b>LOG IN</b></button></a>
         <a href="/signup" <?= $login ?>><button class="signup"><b>SIGN UP</b></button></a>
         <a href="login/logout" <?php echo $logout ?>><button class="signup"><b>LOGOUT</b></button></a>
+
     </div>
     <div class="menu">
         <ul <?php echo $ul ?>>
             <a href="/Home" >
-                <li style="border-left: 4px solid white" >
+                <li style="border-left: 4px solid white"; >
                     Home
                 </li>
             </a>
@@ -55,8 +47,8 @@ if(isset($_SESSION['role']))
                     Store
                 </li>
             </a>
-            <a href="/Inputproducts"  <?php echo $user ?>>
-                <li class="active">
+            <a href="/Inputproducts" <?php echo $user ?>>
+                <li>
                     Input products
                 </li>
             </a>
@@ -70,8 +62,8 @@ if(isset($_SESSION['role']))
                     Add admin
                 </li>
             </a>
-            <a href="/Orders" <?php echo $user ?>>
-                <li>
+            <a href="/Orders"  <?php echo $user ?>>
+                <li class="active">
                     View orders
                 </li>
             </a>
@@ -85,31 +77,38 @@ if(isset($_SESSION['role']))
 
         </ul>
     </div>
-    <div class="formwrap">
-        <form action="Inputproducts/inputProducts" method="post" enctype="multipart/form-data">
-            <h3>Product name:</h3>
-            <input type="text" name="product_name" class="text" placeholder="Product name..." required="required">
-            <br>
-            <br>
-            <h3>Product price:</h3>
-            <input type="number" name="product_price" class="text" placeholder="Product price..." required="required">
-            <br>
-            <br>
-            <h3>Product quantity:</h3>
-            <input type="number" name="product_quantity" class="text" placeholder="Product quantity..." required="required">
-            <br>
-            <br>
-            <h3>Product description:</h3>
-            <input type="text" name="product_description" class="text" placeholder="Product description..." required="required">
-            <br>
-            <br>
-            <input type="file" name="image" style="border:none">
-            <br>
-            <br>
-            <input type="submit" value="Submit" name="submit" class="submit">
+    <div class="middle">
+        <div class="tablewrap">
 
-        </form>
+            <table>
+                <tr class="tr">
+                    <td>
+                        Product name:
+                    </td>
+                    <td>
+                        Product quantity:
+                    </td>
+                    <td>
+                        Customer:
+                    </td>
+
+                </tr>
+                <?php foreach ($items as $item): ?>
+                    <tr class="tr">
+                        <td><?= $item->product_name ?></td>
+                        <td>
+                            <?=   $item->quantity ?>
+                        </td>
+                        <td>
+                            <?= $item->user ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
+
+        </div>
     </div>
-    </body>
+
 </div>
+</body>
 </html>

@@ -9,6 +9,9 @@
             public $product_quantity;
             public $product_description;
             public $id;
+            public $visibility;
+            public $quantity;
+            public $image;
             public function setProductname($product_name)
             {
                 $this->product_name=$product_name;
@@ -50,7 +53,30 @@
             {
                 return $this->id;
             }
-
+            public function setVisibility($visibility=true)
+            {
+                $this->visibility=$visibility;
+            }
+            public function getVisibility()
+            {
+                return $this->visibility;
+            }
+            public function setQuantity($quantity)
+            {
+                $this->quantity=$quantity;
+            }
+            public function getQuantity()
+            {
+                return $this->quantity;
+            }
+            public function setImage($image)
+            {
+                $this->image=$image;
+            }
+            public function getImage()
+            {
+                return $this->image;
+            }
 
 
         }

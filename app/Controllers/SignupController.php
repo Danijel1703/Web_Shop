@@ -13,8 +13,13 @@ class SignupController extends View {
         public function __construct(PDO $db)
         {
             $this->db=$db;
+        }
+        public function display()
+        {
+            echo "<style>";
+            require ('CSS/Signup.css');
+            echo "</style>";
             echo parent::render('SignUp');
-
         }
 
         public function signUp()

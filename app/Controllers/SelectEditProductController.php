@@ -22,13 +22,40 @@ class SelectEditProductController extends View
         $this->db = $db;
         $this->selectProduct();
     }
-
+    public function display()
+    {
+        echo "<style>";
+        require ('CSS/Store.css');
+        echo "</style>";
+        echo parent::render('SelectEditProduct', ['items' => $this->items]);
+    }
     public function selectProduct()
     {
         $this->items = $this->getItems();
-        echo parent::render('SelectEditProduct', ['items' => $this->items]);
     }
 
+    public function truecheckbox()
+    {
+        $id=isset($_GET['id'])? $_GET['id']:'';
+        $change=new ProductStorage($this->db);
+        $change->trueVisibility($id);
+        header ('location: /SelectEditProduct');
+
+    }
+    public function falsecheckbox()
+    {
+        $id=isset($_GET['id'])? $_GET['id']:'';
+        $change=new ProductStorage($this->db);
+        $change->falseVisibility($id);
+        header ('location: /SelectEditProduct');
+    }
+    public function deleteProduct()
+    {
+        $id=isset($_GET['id'])?$_GET['id']:'';
+        $change=new ProductStorage($this->db);
+        $change->delete($id);
+
+    }
     public function getItems()
     {
         $statement = $this->db->prepare("

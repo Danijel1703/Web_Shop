@@ -14,8 +14,13 @@ use Models\View;
             public function __construct(PDO $db)
             {
                 $this->db=$db;
+            }
+            public function display()
+            {
+                echo "<style>";
+                require ('CSS/Login.css');
+                echo "</style>";
                 echo parent::render('Login');
-
             }
 
             public function logIn () {
@@ -29,28 +34,19 @@ use Models\View;
                     $user->setPassword($_POST['password']);
                     $check=new UserStorage($this->db);
                     $check->authentication($user);
-                    $check->getUserBool();
-                    $check->getAdminBool();
-                    $check->bool;
-                    echo '<br>';
-                    echo $check->adminbool;
-                    if($check->adminbool==true)
-                    {
-                        header('location: /AdminHome');
-                    }
-                    else if ($check->adminbool==false && $check->bool==true)
-                    {
-                        header('location: /');
-                    }
-                    var_dump($check);
-
 
                 }
 
 
 
             }
+            public function logout()
+            {
 
+                unset($_SESSION['user']);
+                unset($_SESSION['logged']);
 
+                header('location: /Home');
+            }
         }
 ?>
